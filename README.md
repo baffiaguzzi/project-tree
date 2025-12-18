@@ -1,68 +1,67 @@
-# project-tree.py
+# 📂 Project Tree Generator
 
-📂 project-tree.py
+![Python](https://img.shields.io/badge/python-3.10+-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
 
-A simple Python utility to generate a tree-like structure of a project folder,  
-excluding common bulky or irrelevant directories like node_modules, .git, dist, build, and __pycache__.
-
-It outputs a markdown file representing the folder hierarchy.
-
----
-
-🚀 Features
-
-- Recursive scanning of the project directory
-- Automatic exclusion of common unnecessary folders
-- Loading animation in the console during processing
-- Outputs to `project_structure.md` in markdown format
+A simple Python utility to generate a **tree-like structure** of any project folder,  
+excluding common bulky or irrelevant directories, and outputting the hierarchy in Markdown. Perfect for documentation or sharing your project structure.
 
 ---
 
-🛠️ How to Use
+## 🚀 Features
 
-1. Run the Python script: `python project-tree.py`
+- Recursive scanning of project directories  
+- Automatic exclusion of common unnecessary folders: `node_modules`, `.git`, `dist`, `build`, `__pycache__`  
+- Loading animation in console while scanning  
+- Outputs Markdown file (`project_structure.md`)  
+- Handles errors gracefully and continues scanning  
 
-2. Enter the path to your project folder when prompted (e.g., `/home/user/my-project`)
-
-3. Wait for the analysis to complete with a loading animation in the console
-
-4. Find the generated `project_structure.md` file in the folder where you ran the script, containing your project’s folder tree
+Optional enhancements:
+- Can be extended to JSON output
+- Customizable excluded folders  
 
 ---
 
-📁 Output File Sample
+## 🛠️ Usage
 
-Example content generated inside `project_structure.md`:
+### Interactive mode
 
-Project structure: /path/to/your/project
+```bash
+python project-tree.py
+```
+
+1. Enter the path to your project folder when prompted (e.g., /home/user/my-project).
+
+2. Wait for analysis to complete with loading animation.
+
+3. The generated project_structure.md file will appear in the folder where you ran the script.
+
+### CLI argument mode
+
+```bash
+python project-tree.py /path/to/your/project
+```
+
+---
+
+## Useful for automation or scripts
+
+### 📁 Sample Output
+
+Example Markdown content generated in project_structure.md:
 ├── src
-│ ├── components
-│ └── utils
+│   ├── components
+│   └── utils
 ├── public
 └── package.json
 
----
+## ⚙️ Technical Details
 
-⚙️ Technical Details
+Excluded directories defined in EXCLUDED_DIRS (modifiable in the code).
+Uses threading for smooth console loading animation.
+Compatible with Python 3.10+.
 
-- Excludes directories defined in `EXCLUDED_DIRS`
-- Uses threading for a smooth console loading animation
-- Handles directory read errors gracefully with user-friendly messages
-- Compatible with Python 3.x
+## 📜 License
 
----
-
-🔗 Notes
-
-- You can customize excluded folders by editing the `EXCLUDED_DIRS` variable in the code
-- Great tool to document project structure before sharing or publishing
-
----
-
-📜 License
-
-Open-source MIT License © Gabriele Tambellini
-
----
-
-✨ Thanks for using project-tree.py!
+MIT License © 2025 Gabriele A. Tambellini  
+See the [LICENSE](LICENSE) file for details.
