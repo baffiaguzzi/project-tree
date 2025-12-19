@@ -1,67 +1,130 @@
 # 📂 Project Tree Generator
 
 ![Python](https://img.shields.io/badge/python-3.10+-blue)
+![React](https://img.shields.io/badge/react-18.2+-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-A simple Python utility to generate a **tree-like structure** of any project folder,  
-excluding common bulky or irrelevant directories, and outputting the hierarchy in Markdown. Perfect for documentation or sharing your project structure.
+A simple **project folder tree generator** with a modern **React + TailwindCSS frontend** and **FastAPI backend**.  
+Paste a folder path, optionally set a max depth, and get a **tree-like structure** of your project that you can **copy with one click**.
 
 ---
 
 ## 🚀 Features
 
-- Recursive scanning of project directories  
-- Automatic exclusion of common unnecessary folders: `node_modules`, `.git`, `dist`, `build`, `__pycache__`  
-- Loading animation in console while scanning  
-- Outputs Markdown file (`project_structure.md`)  
-- Handles errors gracefully and continues scanning  
+* Full **React + TailwindCSS frontend** with:
+  * Folder path input with **automatic Windows path normalization** (`\` → `/`, rimozione delle virgolette)
+  * Max depth option
+  * Loading indicator e gestione errori
+  * Scrollable tree display con struttura ad albero (indentazione, icone 📁/📄)
+  * **Copy to clipboard** del tree con stato `Copied ✅`
+  * **Light/Dark theme toggle** con Tailwind dark mode
+* Recursive scanning of project directories via **FastAPI backend**
+* Excludes common bulky directories automatically: `node_modules`, `.git`, `dist`, `build`, `__pycache__`
+* Outputs tree as JSON via API
+* Handles invalid paths and permission errors gracefully
 
 Optional enhancements:
-- Can be extended to JSON output
-- Customizable excluded folders  
+
+* Can extend to Markdown or other formats
+* Frontend styling easily customizable (TailwindCSS)
 
 ---
 
-## 🛠️ Usage
+## 🛠️ Installation
 
-### Interactive mode
+### Backend
 
 ```bash
-python project-tree.py
+cd backend
+python -m venv venv
+venv\Scripts\activate   # Windows
+# or source venv/bin/activate  # Linux/macOS
+pip install -r requirements.txt
+uvicorn app:app --reload
 ```
 
-1. Enter the path to your project folder when prompted (e.g., /home/user/my-project).
-
-2. Wait for analysis to complete with loading animation.
-
-3. The generated project_structure.md file will appear in the folder where you ran the script.
-
-### CLI argument mode
+### Frontend
 
 ```bash
-python project-tree.py /path/to/your/project
+cd frontend
+npm install
+npm run dev
+```
+
+The frontend (React + TailwindCSS) will run on `http://localhost:5173` by default.
+
+---
+
+## ⚙️ Usage
+
+### Frontend UI
+
+1. Open the app in the browser (`http://localhost:5173`).
+2. Enter **full folder path** (e.g., `C:/Users/gabri/OneDrive/Desktop/server-api_bot`).
+   * Backslashes `\` and quotes are **automatically normalized**.
+3. Optionally, set **max depth**.
+4. Click **Generate tree**.
+5. Use the **Copy** button above the tree to copy the structure to the clipboard (button changes to `Copied ✅`).
+6. Use the **Theme** button to toggle between **light** and **dark** modes.
+
+### Backend API
+
+POST request to `http://127.0.0.1:8000/api/tree` with JSON body:
+
+```json
+{
+  "path": "C:/Users/gabri/OneDrive/Desktop/server-api_bot",
+  "depth": 3
+}
+```
+
+Response:
+
+```json
+{
+  "structure": [
+    "cli",
+    "  api_check.py",
+    "  server_check.py",
+    "configs",
+    "  config_apis.json",
+    "LICENSE",
+    "README.md"
+  ]
+}
 ```
 
 ---
 
-## Useful for automation or scripts
+## 📁 Example Output
 
-### 📁 Sample Output
+```bash
+cli
+  api_check.py
+  server_check.py
+configs
+  config_apis.json
+LICENSE
+README.md
+```
 
-Example Markdown content generated in project_structure.md:
-├── src
-│   ├── components
-│   └── utils
-├── public
-└── package.json
+Folders shown in **yellow**, files in **grey** in the frontend tree.
 
-## ⚙️ Technical Details
+---
 
-Excluded directories defined in EXCLUDED_DIRS (modifiable in the code).
-Uses threading for smooth console loading animation.
-Compatible with Python 3.10+.
+## 🧰 Technical Details
+
+* **Backend**: Python 3.10+, FastAPI, recursive folder traversal with max depth
+* **Frontend**: React 18 + TypeScript + Vite + TailwindCSS (dark mode with `dark` class)
+* Tree view:
+  * Indentation-based rendering
+  * Folders in yellow, files in grey
+  * Copy-to-clipboard via `navigator.clipboard.writeText`
+* Input path normalization: trims, removes quotes, replaces `\` with `/`
+
+---
 
 ## 📜 License
 
-MIT License © 2025 Gabriele A. Tambellini  
+MIT License © 2025 Gabriele A. Tambellini
 See the [LICENSE](LICENSE) file for details.

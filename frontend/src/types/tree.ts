@@ -1,8 +1,8 @@
 export interface TreeRequest {
-  path: string
-  depth?: number
+    path: string
+    depth?: number
 }
 
 export interface TreeResponse {
-  structure: string[]
+    structure: string[]
 }
