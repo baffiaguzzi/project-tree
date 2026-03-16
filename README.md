@@ -127,5 +127,5 @@ Folders shown in **yellow**, files in **grey** in the frontend tree.
 
 ## 📜 License
 
-MIT License © 2025 Gabriele A. Tambellini
+MIT License © 2026 Gabriele A. Tambellini
 See the [LICENSE](LICENSE) file for details.
