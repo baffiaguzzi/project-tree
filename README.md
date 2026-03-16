@@ -3,6 +3,7 @@
 ![Python](https://img.shields.io/badge/python-3.10+-blue)
 ![React](https://img.shields.io/badge/react-18.2+-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
+![Version](https://img.shields.io/badge/version-1.2.0-blue)
 
 A simple **project folder tree generator** with a modern **React + TailwindCSS frontend** and **FastAPI backend**.  
 Paste a folder path, optionally set a max depth, and get a **tree-like structure** of your project that you can **copy with one click**.
